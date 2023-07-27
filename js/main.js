@@ -2,7 +2,6 @@
 
 const overlay = document.querySelector('.overlay')
 overlay.classList.remove('active');
-console.log(overlay);
 
 const createRow = (product, num) => {
   const productTotal = product.price * product.count;
@@ -24,23 +23,27 @@ const createRow = (product, num) => {
         </td>
     </tr>  
   `;
-  return result
+  return result;
+};
+
+const getOrderNum = (table) => {
+    let result = 0;    
+    const lastRow = table.lastElementChild;
+    if(lastRow){
+        result = +lastRow.querySelector('.table__cell').textContent;
+    };
+    return result;
 };
 
 const renderGoods = (goods) => {
     let rows = "";
     const table = document.querySelector('.table__body');
-    const lastRow = table.lastElementChild;
-    let lastNum = 0;
-    if(lastRow){
-        console.log(lastRow);
-        lastNum = +lastRow.querySelector('.table__cell').textContent;
-    }
+    let lastNum = getOrderNum(table);
     goods.forEach(element => {
         lastNum ++;
         rows += createRow(element, lastNum);
     });
     table.insertAdjacentHTML('beforeend',rows);
-}
+};
 
 renderGoods(goods);
