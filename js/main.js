@@ -18,20 +18,20 @@ const getOrderNum = () => {
   return result + 1;
 };
 
-const createRow = (product) => {
+const createRow = ({id, title, category, units, count, price}) => {
   const num = getOrderNum();
-  const productTotal = product.price * product.count;
+  const productTotal = price * count;
   
   const result = `
     <tr>
         <td class="table__cell">${num}</td>
-        <td class="table__cell table__cell_left table__cell_name" data-id="${product.id}">
-        <span class="table__cell-id">id: ${product.id}</span>
-        ${product.title}</td>
-        <td class="table__cell table__cell_left">${product.category}</td>
-        <td class="table__cell">${product.units}</td>
-        <td class="table__cell">${product.count}</td>
-        <td class="table__cell">${product.price}</td>
+        <td class="table__cell table__cell_left table__cell_name" data-id="${id}">
+        <span class="table__cell-id">id: ${id}</span>
+        ${title}</td>
+        <td class="table__cell table__cell_left">${category}</td>
+        <td class="table__cell">${units}</td>
+        <td class="table__cell">${count}</td>
+        <td class="table__cell">${price}</td>
         <td class="table__cell">${productTotal}</td>
         <td class="table__cell table__cell_btn-wrapper">
         <button class="table__btn table__btn_pic"></button>
