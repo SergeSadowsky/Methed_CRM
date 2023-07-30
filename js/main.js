@@ -2,11 +2,33 @@
 
 const modalTitle = document.querySelector('.modal__title');
 const modalForm = document.querySelector('.modal__form');
+const modalOverlay = document.querySelector('.overlay__modal');
 const modalCheckBox = document.querySelector('.modal__checkbox');
 const modalCheckBoxText = document.querySelector('.modal__input_discount');
 
 const overlay = document.querySelector('.overlay')
 overlay.classList.remove('active');
+
+
+modalOverlay.addEventListener('click', (event) => {
+  event.stopPropagation();
+  });
+
+overlay.addEventListener('click', () => {
+  overlay.classList.remove('active');
+  });
+
+const btnAddGoods = document.querySelector('.panel__add-goods');
+btnAddGoods.addEventListener('click', () => {
+  overlay.classList.add('active');
+});
+
+const btnModalClose = document.querySelector('.modal__close');
+btnModalClose.addEventListener('click', () => {
+  overlay.classList.remove('active');
+});
+
+
 
 const getOrderNum = () => {
   let result = 0;
