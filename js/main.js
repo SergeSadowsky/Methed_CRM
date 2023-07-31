@@ -10,13 +10,21 @@ const overlay = document.querySelector('.overlay')
 overlay.classList.remove('active');
 
 
-modalOverlay.addEventListener('click', (event) => {
-  event.stopPropagation();
-  });
+// modalOverlay.addEventListener('click', (event) => {
+//   event.stopPropagation();
+//   });
 
-overlay.addEventListener('click', () => {
-  overlay.classList.remove('active');
-  });
+// overlay.addEventListener('click', () => {
+//   overlay.classList.remove('active');
+//   });
+
+overlay.addEventListener('click', (e) => {
+const target = e.target;
+console.log(target);
+if(target === overlay || target.closest('modal__close')){
+    overlay.classList.remove('active');
+}
+});
 
 const btnAddGoods = document.querySelector('.panel__add-goods');
 btnAddGoods.addEventListener('click', () => {
@@ -65,10 +73,35 @@ const createRow = ({id, title, category, units, count, price}) => {
   return result;
 };
 
+const deleteGoodsById = (goods, id) => {
+  const index = goods.findIndex(el => el['id'] === +id);
+  if (index !== -1) goods.splice(index, 1);
+};
+
+const numberingRows = (table) => {
+    let i = 0
+    const rows = table.querySelectorAll('tr');
+    rows.forEach(row => {
+        const td = row.querySelector('.table__cell');
+        td.textContent = ++i;
+    });
+}
+
 const renderGoods = (goods) => {
   const table = document.querySelector('.table__body');
   goods.forEach(element => {
     table.insertAdjacentHTML('beforeend',createRow(element));
+  });
+  table.addEventListener('click', e => {
+    const target = e.target;
+    if(target === target.closest('.table__btn_del')){
+        const tr = target.closest('tr');
+        const id = tr.querySelector('.table__cell_name').dataset.id;
+        deleteGoodsById(goods, id);
+        tr.remove();
+        numberingRows(table);
+        goods.forEach(el => console.log(el));
+    }
   });    
 };
 
