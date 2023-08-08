@@ -53,7 +53,7 @@
               </tr>
             </thead>
             <tbody class="table__body">
-              <tr>
+              <!-- <tr>
                 <td class="table__cell">1</td>
                 <td class="table__cell table__cell_left table__cell_name" data-id="24601654816512">
                   <span class="table__cell-id">id: 24601654816512</span>
@@ -83,7 +83,7 @@
                   <button class="table__btn table__btn_edit"></button>
                   <button class="table__btn table__btn_del"></button>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
 
@@ -119,44 +119,45 @@
       <form action="https://jsonplaceholder.typicode.com/posts" class="modal__form" method="post">
         <fieldset class="modal__fieldset">
 
+          <!-- <input type="hidden" name="id" id="id" value=""> -->
+          
           <label class="modal__label modal__label_name" for="name">
             <span class="modal__text">Наименование</span>
-            <input class="modal__input" type="text" name="name" id="name">
+            <input class="modal__input" type="text" name="name" id="name" required>
           </label>
 
 
           <label class="modal__label modal__label_category" for="category">
             <span class="modal__text">Категория</span>
-            <input class="modal__input" type="text" name="category" id="category">
+            <input class="modal__input" type="text" name="category" id="category" required>
           </label>
 
           <label class="modal__label modal__label_description" for="description">
             <span class="modal__text">Описание</span>
-            <textarea class="modal__input modal__input_textarea" name="description" id="description"></textarea>
+            <textarea class="modal__input modal__input_textarea" name="description" id="description" required></textarea>
           </label>
 
           <label class="modal__label modal__label_units" for="units">
             <span class="modal__text">Единицы измерения</span>
-            <input class="modal__input" type="text" name="units" id="units">
+            <input class="modal__input" type="text" name="units" id="units" required>
           </label>
 
           <div class="modal__label modal__label_discount">
             <label class="modal__text" for="discount">Дисконт</label>
             <div class="modal__checkbox-wrapper">
               <input class="modal__checkbox" type="checkbox" name="discount" id="discount">
-              <input class="modal__input modal__input_discount" type="text" name="discount_count" disabled>
+              <input class="modal__input modal__input_discount" type="number" min="0" max="100" step="any" name="discount_count" disabled>
             </div>
           </div>
 
-
           <label class="modal__label modal__label_count" for="count">
             <span class="modal__text">Количество</span>
-            <input class="modal__input" type="text" name="count" id="count">
+            <input class="modal__input" type="number" name="count" id="count" min="0" required>
           </label>
 
           <label class="modal__label modal__label_price" for="price">
             <span class="modal__text">Цена</span>
-            <input class="modal__input" type="text" name="price" id="price">
+            <input class="modal__input" type="number" name="price" id="price" min="0" step="any" required>
           </label>
 
           <label tabindex="0" for="image" class="modal__label modal__label_file">Добавить изображение</label>
@@ -165,7 +166,7 @@
 
         <div class="modal__footer">
           <label class="modal__total">Итоговая стоимость:
-            <output class="modal__total-price" name="total">$ 900.00</output>
+            <output class="modal__total-price" name="total"></output>
           </label>
 
           <button class="modal__submit" type="submit">Добавить товар</button>

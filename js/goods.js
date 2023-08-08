@@ -1,6 +1,34 @@
 const goods = 
 [
     {
+      "id": 24601654816512,
+      "title": "Навигационная система Soundmax",
+      "price": 100,
+      "description": "Навигационная система Soundmax",
+      "category": "Техника для дома",
+      "discont": false,
+      "count": 5,
+      "units": "шт",
+      "images": {
+        "small": "img/smrtxiaomi11t-m.jpg",
+        "big": "img/smrtxiaomi11t-b.jpg"
+      }
+    },
+    {
+      "id": 24601654816515,
+      "title": "Телевизор DEXP",
+      "price": 1000,
+      "description": "Телевизор DEXP.",
+      "category": "Техника для дома",
+      "discont": false,
+      "count": 15,
+      "units": "шт",
+      "images": {
+        "small": "img/smrtxiaomi11t-m.jpg",
+        "big": "img/smrtxiaomi11t-b.jpg"
+      }
+    },  
+    {
       "id": 1,
       "title": "Смартфон Xiaomi 11T 8/128GB",
       "price": 27000,
