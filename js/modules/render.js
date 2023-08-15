@@ -35,6 +35,7 @@ const createRow = (
     {id, title, category, units, count, price, discont}, num) => {
   const discountedPrice = discont ? (price - price * discont / 100) : price;
   const productTotal = discountedPrice * count;
+  const picUrl = '/img/lamp_800x600.jpg';
   // console.log(id, title, category, discountedPrice, count, productTotal);
   const result = `
     <tr>
@@ -48,7 +49,7 @@ const createRow = (
         <td class="table__cell">${discountedPrice}</td>
         <td class="table__cell">${productTotal}</td>
         <td class="table__cell table__cell_btn-wrapper">
-        <button class="table__btn table__btn_pic"></button>
+        <button class="table__btn table__btn_pic" data-pic="${picUrl}"></button>
         <button class="table__btn table__btn_edit"></button>
         <button class="table__btn table__btn_del"></button>
         </td>

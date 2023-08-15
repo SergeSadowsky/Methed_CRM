@@ -27,6 +27,13 @@ const initEvents = (goods) => {
   const tableGoods = document.querySelector('.table__body');
   tableGoods.addEventListener('click', e => {
     const target = e.target;
+    if (target === target.closest('.table__btn_pic')) {
+      const xPos = Math.floor((screen.width - 800) / 2);
+      const yPos = Math.floor((screen.height - 600) / 2);
+      const features = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+        left=${xPos},top=${yPos},width=800,height=600`;
+      const handle = open(target.dataset.pic, 'picwindow', features);
+    };
     if (target === target.closest('.table__btn_del')) {
       const tr = target.closest('tr');
       const id = tr.querySelector('.table__cell_name').dataset.id;
