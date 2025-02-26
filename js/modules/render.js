@@ -1,12 +1,43 @@
 import calc from './calc.js';
 import {nf} from './intl.js';
 
+const addImagePreview = () => {
+  const modalLabelFile = document.querySelector('.modal__label_file');
+  const errorText = document.createElement('div');
+  errorText.setAttribute('id', 'modal__error');
+  errorText.classList.add('modal__label');
+  errorText.style.color = 'red';
+  errorText.style.paddingLeft = '10px';
+  errorText.style.display = 'none';
+  const imagePreview = document.createElement('img');
+  imagePreview.setAttribute('id', 'modal__image__preview');
+  imagePreview.style.cssText = `
+    display: none;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    object-position: center;
+    grid-column: 1/-1;
+    justify-self: center;
+  `;
+  errorText.textContent = 'Изображение не должно превышать размер 1 Мб';
+  modalLabelFile.insertAdjacentElement('afterend', imagePreview);
+  modalLabelFile.insertAdjacentElement('beforebegin', errorText);
+};
+
+const removeImagePreview = (el) =>{
+  el.querySelector('#modal__error').remove();
+  el.querySelector('#modal__image__preview').remove();
+};
+
 const closeModal = () => {
   const overlay = document.querySelector('.overlay');
+  removeImagePreview(overlay);
   overlay.classList.remove('active');
 };
 const openModal = () => {
   const overlay = document.querySelector('.overlay');
+  addImagePreview();
   overlay.classList.add('active');
 };
 

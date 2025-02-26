@@ -2,7 +2,6 @@ import calc from './calc.js';
 import * as rn from './render.js';
 import serviceData from './serviceData.js';
 
-
 const initEvents = (goods) => {
   const overlay = document.querySelector('.overlay');
   overlay.classList.remove('active');
@@ -30,10 +29,15 @@ const initEvents = (goods) => {
     if (target === target.closest('.table__btn_pic')) {
       const xPos = Math.floor((screen.width - 800) / 2);
       const yPos = Math.floor((screen.height - 600) / 2);
-      const features = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
-        left=${xPos},top=${yPos},width=800,height=600`;
-      const handle = open(target.dataset.pic, 'picwindow', features);
-    };
+
+      window.open(target.dataset.pic,
+          '',
+          `left=${xPos},top=${yPos},location=no,width=800,height=600,resizable=no,scrollbars=no,toolbar=no,status=no`);
+
+      // const features = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
+      //   left=${xPos},top=${yPos},width=800,height=600`;
+      // const handle = open(target.dataset.pic, 'picwindow', features);
+    }
     if (target === target.closest('.table__btn_del')) {
       const tr = target.closest('tr');
       const id = tr.querySelector('.table__cell_name').dataset.id;
@@ -63,6 +67,25 @@ const formControl = (goods) => {
 
   form.discount_count.addEventListener('change', e => {
     calc.formTotal(form);
+  });
+
+  form.image.addEventListener('change', e => {
+    const target = e.target;
+    if (target.files.length > 0) {
+      const imagePreview = form.querySelector('#modal__image__preview');
+      const errorText = form.querySelector('#modal__error');
+      const src = URL.createObjectURL(target.files[0]);
+      console.log('size: ', target.files[0].size);
+      if (target.files[0].size > 1048576) {
+        errorText.textContent = 'Изображение не должно превышать размер 1 Мб';
+        imagePreview.style.display = 'none';
+        errorText.style.display = 'block';
+      } else {
+        imagePreview.style.display = 'block';
+        errorText.style.display = 'none';
+        imagePreview.src = src;
+      }
+    }
   });
 
   const tableGoods = document.querySelector('.table__body');
